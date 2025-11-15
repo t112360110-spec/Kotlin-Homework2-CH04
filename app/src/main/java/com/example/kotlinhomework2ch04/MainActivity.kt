@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var tvMeal: TextView
     private val startForResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){ result: ActivityResult ->
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             val sugar = intent?.getStringExtra("sugar")
             val ice = intent?.getStringExtra("ice")
             // Step14：設定 tvMeal 的文字
-            val tvMeal = findViewById<TextView>(R.id.tvMeal)
             tvMeal.text = "飲料：$drink\n\n甜度：$sugar\n\n冰塊：$ice"
         }
     }
@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        tvMeal = findViewById(R.id.tvMeal)
 
         // Step2：定義元件變數，並通過 findViewById 取得元件
         val btnChoice = findViewById<Button>(R.id.btnChoice)
